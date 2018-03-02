@@ -25,12 +25,12 @@ import {InAppBrowser} from '@ionic-native/in-app-browser';
 import { IonicStorageModule } from '@ionic/storage';
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyC0h05-j2S6jrXYg5iSMBUv0Xy9NOpP3SU",
-  authDomain: "moviefinder-5539f.firebaseapp.com",
-  databaseURL: "https://moviefinder-5539f.firebaseio.com",
-  projectId: "moviefinder-5539f",
-  storageBucket: "moviefinder-5539f.appspot.com",
-  messagingSenderId: "280676322269"
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
+  messagingSenderId: ""
 };
 
 @NgModule({
