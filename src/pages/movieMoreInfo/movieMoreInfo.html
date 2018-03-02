@@ -1,0 +1,95 @@
+<ion-header no-shadow>
+  <ion-navbar  transparent>
+    <div *ngIf="movie != null">
+     <ion-icon id="star" *ngIf="!favorite" (click)="fav(movie.id)" [ngClass]="{'starred': favorite}" name="star"></ion-icon>
+     <ion-icon id="star" *ngIf="favorite" (click)="removeFav(movie.id)" [ngClass]="{'starred': favorite}" name="star"></ion-icon>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content #container fullscreen="true">
+
+
+  <div class="background-image clearfix" *ngIf="movie !=null" [style.background-image]="getBackground('http://image.tmdb.org/t/p/w500/' + movie.poster_path)"> </div>
+  <ion-grid>
+
+
+
+        <ion-row no-padding *ngIf="movie !=null">
+
+
+          <ion-col col-12>
+            <img style="border: solid #222222;" class="img-responsive" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ movie.poster_path' [scrollObservable]="container.ionScroll" />
+          </ion-col>
+
+          <ion-col class="strike">
+            <span>INFO</span>
+          </ion-col>
+
+          <ion-col col-12 class="movieInfo">
+            <p class="movieName"> {{movie.title}}   <img class="imdb" (click)='createInAppBrowser("http://imdb.com/title/" + movie.imdb_id)' src="assets/images/imdb_logo.png" /></p>
+            <p class="infoP"> {{movie.release_date}}</p>
+            <span class="infoP" *ngFor="let genre of movie.genres"> {{genre.name}}, </span>
+            <p class="infoP">Tmdb Rating: {{movie.vote_average}}/10 </p>
+            <p class="infoP">Runtime: {{movie.runtime}} minutes</p>
+            <p class="infoP"> <strong>Overview</strong> <br> {{movie.overview}} </p>
+            <a style="text-align: right!important;;" *ngIf="movie.homepage" (click)='createInAppBrowser(movie.homepage)' class="btn btn-default">Visit Movie
+              Website</a>
+          </ion-col>
+
+          <ion-col class="strike">
+            <span>TRAILERS</span>
+          </ion-col>
+
+          </ion-row>
+
+
+<div *ngIf="movie !=null">
+  <div *ngFor="let trailer of movie.videos.results let i=index" style="margin-top: 2%;">
+    <div [@fadeIn]="'true'" *ngIf="trailer.name.indexOf('Official Trailer' || 'Main Trailer') !== -1" class="embed-container">
+      <iframe width="560" height="315"
+              [src]='"https://www.youtube.com/embed/"+trailer.key+"?&controls=1&showinfo=0&enablejsapi=1" | safe' frameborder="0" allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</div>
+
+
+
+    <ion-row no-padding text-center *ngIf="relatedMovies !=null">
+
+      <ion-col col-12 class="strike">
+        <span>SEE ALSO</span>
+      </ion-col>
+
+      <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let movie of relatedMovies.recommendations.results; let i=index" >
+        <div  (click)="goToMoreInfo(movie.id)" >
+          <div *ngIf="i < 8" class="containerBox">
+            <img class="img-responsive" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ movie.poster_path' [scrollObservable]="container.ionScroll" />
+            <div class='text-box'>
+              <p [@fadeIn]="'true'" class="dataNumber">{{movie.title}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+
+    <div class="spaceCreater" style="height: 20px;"></div>
+
+  </ion-grid>
+
+
+  <ion-fab right bottom >
+    <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <a ion-fab href="https://www.facebook.com/patrik.emilsson.9" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a ion-fab href="https://www.linkedin.com/in/patrik-emilsson-08b82013a/" target="_blank"><ion-icon name="logo-linkedin"> </ion-icon> </a>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>
+

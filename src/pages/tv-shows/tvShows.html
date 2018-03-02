@@ -1,0 +1,204 @@
+<<ion-header>
+  <ion-navbar>
+
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon class="navBarButton" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title *ngIf="!toggled">
+      TV-Shows
+    </ion-title>
+
+    <ion-buttons end>
+      <button class="searchButton" ion-button icon-only *ngIf="!toggled" (click)="toggleSearch()">
+        <ion-icon color="primary" name="search"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-searchbar *ngIf="toggled"
+                   (ionInput) ="searchTvShows($event, searchKey)"
+                   (ionCancel)="cancelSearch($event)"
+                   (ionClear) = "cancelSearch($event)"
+                   [showCancelButton]="true">
+    </ion-searchbar>
+
+
+  </ion-navbar>
+
+  <ion-segment color="primary" style="background-color: #2d2d2d;" [(ngModel)]="choosesegment" >
+      <ion-segment-button  value="1" (click)="TabChanges()">
+        Popular
+      </ion-segment-button>
+      <ion-segment-button  value="2" (click)="TabChanges()">
+        Top Rated
+      </ion-segment-button>
+    </ion-segment>
+
+</ion-header>
+
+
+<ion-content #container>
+
+    <div [ngSwitch]="choosesegment">
+
+        <ion-slides (ionSlideWillChange)="slideChanged()" >
+            <ion-slide>
+              <div *ngSwitchCase="'1'"> 
+                  <div *ngIf="searchResult">
+                      <h3 style="margin-top: 5px; margin-left: 10px; color: #ffffff;">Search Results:</h3>
+                      <ion-row text-center>
+                        <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of searchResult; let i=index" >
+                          <div   (click)="goToMoreInfo(tvShow.id)" >
+                            <div  class="containerBox">
+                              <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll"/>
+                              <div class='text-box'>
+                                <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+                    </div>
+                               
+                    <ion-row *ngIf="!searchResult" text-center>
+                      <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of popularTvShowList;let i=index" >
+                        <div  (click)="goToMoreInfo(tvShow.id)" >
+                          <div class="containerBox">
+                            <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                            <div class='text-box'>
+                              <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row *ngIf="!searchResult" text-center>
+                        <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of popularTvShowList2;let i=index" >
+                          <div  (click)="goToMoreInfo(tvShow.id)" >
+                            <div class="containerBox">
+                              <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                              <div class='text-box'>
+                                <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row *ngIf="!searchResult" text-center>
+                          <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of popularTvShowList3;let i=index" >
+                            <div  (click)="goToMoreInfo(tvShow.id)" >
+                              <div class="containerBox">
+                                <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                                <div class='text-box'>
+                                  <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row *ngIf="!searchResult" text-center>
+                            <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of popularTvShowList4;let i=index" >
+                              <div  (click)="goToMoreInfo(tvShow.id)" >
+                                <div class="containerBox">
+                                  <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                                  <div class='text-box'>
+                                    <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+              </div>
+            </ion-slide>
+            <ion-slide>
+                <div *ngSwitchCase="'2'"> 
+                    <div *ngIf="searchResult">
+                        <h3 style="margin-top: 5px; margin-left: 10px; color: #ffffff;">Search Results:</h3>
+                        <ion-row text-center>
+                          <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of searchResult; let i=index" >
+                            <div   (click)="goToMoreInfo(tvShow.id)" >
+                              <div  class="containerBox">
+                                <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll"/>
+                                <div class='text-box'>
+                                  <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                      </div>
+                                 
+                      <ion-row *ngIf="!searchResult" text-center>
+                        <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of TopRatedShowsList;let i=index" >
+                          <div  (click)="goToMoreInfo(tvShow.id)" >
+                            <div class="containerBox">
+                              <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                              <div class='text-box'>
+                                <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </ion-col>
+                      </ion-row>
+  
+                      <ion-row *ngIf="!searchResult" text-center>
+                          <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of TopRatedShowsList2;let i=index" >
+                            <div  (click)="goToMoreInfo(tvShow.id)" >
+                              <div class="containerBox">
+                                <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                                <div class='text-box'>
+                                  <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+  
+                        <ion-row *ngIf="!searchResult" text-center>
+                            <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of TopRatedShowsList3;let i=index" >
+                              <div  (click)="goToMoreInfo(tvShow.id)" >
+                                <div class="containerBox">
+                                  <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                                  <div class='text-box'>
+                                    <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                                  </div>
+                                </div>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+  
+                          <ion-row *ngIf="!searchResult" text-center>
+                              <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of TopRatedShowsList3;let i=index" >
+                                <div  (click)="goToMoreInfo(tvShow.id)" >
+                                  <div class="containerBox">
+                                    <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+                                    <div class='text-box'>
+                                      <p [@fadeIn]="'true'" class="dataNumberTV">{{tvShow.name}}</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </ion-col>
+                            </ion-row>
+                </div>
+            </ion-slide>
+        </ion-slides>
+      </div>
+
+ 
+
+
+
+</ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+  <ion-fab-list side="left">
+    <a ion-fab href="https://www.facebook.com/patrik.emilsson.9" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+    <a ion-fab href="https://www.linkedin.com/in/patrik-emilsson-08b82013a/" target="_blank"><ion-icon name="logo-linkedin"> </ion-icon> </a>
+  </ion-fab-list>
+</ion-fab>

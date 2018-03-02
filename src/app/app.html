@@ -1,0 +1,36 @@
+<ion-menu [content]="mycontent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>MovieFinder</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+
+
+      <div class="menu">
+      <button class="menuButton" menuClose [class.activeHighlight]="checkActive(p)"  ion-item *ngFor="let p of pages" (click)="onLoadPage(p)">
+        <ion-icon [name]="p.icon" item-left></ion-icon>
+        {{ p.title }}
+      </button>
+      </div>
+
+    <!--  <button *ngIf="isAuthenticated" class="menuButton" ion-item (click)="onSignOut()" menuClose>
+        <ion-icon class="menuIcon" name="log-out" item-left></ion-icon>
+        Sign Out
+      </button> 
+
+      <div *ngIf="!isAuthenticated">
+        <button class="menuButton" [class.activeHighlight]="checkActive(p)"  ion-item (click)="onLoadPage(authPage)" menuClose>
+          <ion-icon class="menuIcon" name="lock" item-left></ion-icon>
+          Authentication
+        </button>
+      </div> -->
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>

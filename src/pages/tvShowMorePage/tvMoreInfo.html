@@ -1,0 +1,99 @@
+<ion-header no-shadow>
+  <ion-navbar transparent>
+      <div *ngIf="tvShow != null">
+          <ion-icon id="star" *ngIf="!favorite" (click)="fav(tvShow.id)" [ngClass]="{'starred': favorite}" name="star"></ion-icon>
+          <ion-icon id="star" *ngIf="favorite" (click)="removeFav(tvShow.id)" [ngClass]="{'starred': favorite}" name="star"></ion-icon>
+         </div>
+  </ion-navbar>
+</ion-header>
+
+
+
+<ion-content no-padding #container fullscreen="true">
+
+    <div class="background-image" *ngIf="tvShow !=null" [style.background-image]="getBackground('http://image.tmdb.org/t/p/w500/' + tvShow.poster_path)" > </div>
+
+  <ion-grid>
+
+    <ion-row *ngIf="tvShow != null">
+
+      <ion-col col-12>
+        <img style="border: solid #222222;" class="img-responsive" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll">
+      </ion-col>
+
+      <ion-col class="strike">
+        <span>INFO</span>
+      </ion-col>
+
+      <ion-col col-12 class="tvShowInfo">
+        <p class="showName"> {{tvShow.name}}  <img class="imdb" (click)='createInAppBrowser("http://imdb.com/title/" + imdbId.imdb_id)' src="assets/images/imdb_logo.png" /> </p>
+        <span class="infoP" *ngFor="let genre of tvShow.genres"> {{genre.name}}, </span>
+        <p class="infoP">Tmdb Rating: {{tvShow.vote_average}}/10 </p>
+        <p class="infoP">Runtime: {{tvShow.episode_run_time}} minutes</p>
+        <p class="infoP">Episodes: {{tvShow.number_of_episodes}}</p>
+        <p class="infoP">Seasons: {{tvShow.number_of_seasons}}</p>
+        <p class="infoP">Latest Episode aired: {{tvShow.last_air_date}}</p>
+        <p *ngIf="tvShow.networks" class="infoP">You can find this show on: {{tvShow.networks[0].name}}</p>
+        <p class="infoP"> <strong>Overview</strong> <br>
+          {{tvShow.overview}} </p>
+        <a *ngIf="tvShow.homepage" (click)='createInAppBrowser(tvShow.homepage)' class="btn btn-default">Visit Series
+          Website</a>
+      </ion-col>
+
+      <ion-col class="strike">
+        <span>TRAILERS</span>
+      </ion-col>
+
+    </ion-row>
+
+<div *ngIf="tvShow != null">
+  <div  *ngFor="let trailer of tvShow.videos.results let i=index" style=" margin-top: 2%;">
+   <div *ngIf="i < 4">
+    <div  [@fadeIn]="'true'" *ngIf="trailer.name.indexOf('Official Trailer' || 'Main Trailer') !== -0" class="embed-container">
+      <iframe width="560" height="315"
+              [src]='"https://www.youtube.com/embed/"+trailer.key+"?&controls=1&showinfo=0&enablejsapi=1" | safe' frameborder="0" allowfullscreen>
+      </iframe>
+    </div>
+    </div>
+  </div>
+</div>
+
+
+    <ion-row *ngIf="relatedShows != null" text-center>
+
+      <ion-col col-12 class="strike">
+        <span>SEE ALSO</span>
+      </ion-col>
+
+
+      <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let tvShow of relatedShows.recommendations.results; let i=index" >
+        <div  (click)="goToMoreInfo(tvShow.id)" >
+          <div *ngIf="i < 8" class="containerBox">
+            <img class="img-responsive" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ tvShow.poster_path' [scrollObservable]="container.ionScroll" />
+            <div class='text-box'>
+              <p [@fadeIn]="'true'" class="dataNumber">{{tvShow.name}}</p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+
+
+
+    <div class="spaceCreater" style="height: 20px;"></div>
+
+  </ion-grid>
+
+
+  <ion-fab right bottom >
+    <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+    <ion-fab-list side="left">
+      <a ion-fab href="https://www.facebook.com/patrik.emilsson.9" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a ion-fab href="https://www.linkedin.com/in/patrik-emilsson-08b82013a/" target="_blank"><ion-icon name="logo-linkedin"> </ion-icon> </a>
+    </ion-fab-list>
+  </ion-fab>
+
+</ion-content>
+
+

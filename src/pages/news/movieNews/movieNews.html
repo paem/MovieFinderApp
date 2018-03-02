@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon class="navBarButton" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      Movie News
+    </ion-title>
+
+
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content #container no-padding no-margin class="card-background-page">
+        <ion-card class="containerBox" style="margin: auto; " *ngFor="let item of newsArray">
+          <a *ngIf="item.url" (click)='createInAppBrowser("http://www.empireonline.com"+item.url)'> </a>
+          <img class="img-responsive"  style="height: 100%; width: 100%; "   [lazyLoad]='item.image' [scrollObservable]="container.ionScroll" />
+          <div class="shadow"></div>
+          <div class="card-subtitle"> <strong class="dataNumber2">{{item.date}}</strong> </div>
+          <div class='card-title'>
+            {{item.title}}
+          </div>
+        </ion-card>
+</ion-content>
+
+<ion-fab right bottom>
+  <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+  <ion-fab-list side="left">
+    <a ion-fab href="https://www.facebook.com/patrik.emilsson.9" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+    <a ion-fab href="https://www.linkedin.com/in/patrik-emilsson-08b82013a/" target="_blank"><ion-icon name="logo-linkedin"> </ion-icon> </a>
+  </ion-fab-list>
+</ion-fab>

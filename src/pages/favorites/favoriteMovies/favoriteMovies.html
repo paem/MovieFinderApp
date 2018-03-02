@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons left>
+      <button ion-button icon-only menuToggle>
+        <ion-icon class="navBarButton" name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>
+      Favorite Movies
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content #container>
+
+
+  <ion-row text-center>
+    <ion-col width-50 no-padding text-center style="padding: 2px!important;" *ngFor="let favorite of favoriteMovies let i=index" >
+      <div  (click)="goToMoreInfo(favorite.id)" >
+        <div class="containerBox">
+          <img class="img-responsive" [offset]="500" [defaultImage]='"./assets/images/404.jpg"' [lazyLoad]='"http://image.tmdb.org/t/p/w500/"+ favorite.poster_path' [scrollObservable]="container.ionScroll" />
+          <div class='text-box'>
+            <p class="dataNumberM">{{favorite.title}}</p>
+          </div>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="!favoriteMovies">
+    <ion-col text-center class="bottom">
+      <p  style="color: #ffffff;">No favorites found!</p>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+
+<ion-fab bottom right style="margin-bottom: 4em;">
+  <button ion-fab color="light"><ion-icon name="arrow-dropleft"></ion-icon></button>
+  <ion-fab-list side="left">
+    <a ion-fab href="https://www.facebook.com/patrik.emilsson.9" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a>
+    <a ion-fab href="https://www.linkedin.com/in/patrik-emilsson-08b82013a/" target="_blank"><ion-icon name="logo-linkedin"> </ion-icon> </a>
+  </ion-fab-list>
+</ion-fab>

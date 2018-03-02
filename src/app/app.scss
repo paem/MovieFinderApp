@@ -1,0 +1,211 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+.toolbar-background {
+  background-color:  #2d2d2d;
+}
+
+.tab-button{
+  background-color: #222;
+}
+
+
+.custom-spinner-box{
+
+  color: #f4f4f4;
+  font:400 16px 'proxima_nova_ltsemibold';
+  text-shadow:
+    -0.5px -0.5px 0 #000,
+    0.5px -0.5px 0 #000,
+    -0.5px  0.5px 0 #000,
+    0.5px  0.5px 0 #000;
+}
+
+.fixed-content{
+  background-color: #2d2d2d;
+}
+.toolbar-title {
+  color: #f4f4f4;
+}
+
+.tab-button .tab-button-text{
+  color: #f4f4f4
+
+}
+.tab-button .tab-button-icon{
+  color: #f4f4f4;
+}
+
+.menuButton{
+  background-color: #2d2d2d!important;
+  color: #ffffff;
+}
+
+.menuButton:active{
+  color: #ffbf2a;
+}
+.menuButton:after{
+  color: #ffbf2a;
+}
+.tab-item.tab-item-active, .tab-item.active, .tab-item.activated {
+  color: #ffbf2a;
+}
+
+.back-button{
+  color: #ffffff;
+}
+
+.navBarButton{
+  color: #ffffff;
+}
+
+.activeHighlight {
+  color: #ffbf2a;
+}
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.scroll{height: 100%;}
+
+@media only screen and (min-width:960px){
+  /* styles for browsers larger than 960px; */
+  .dataNumber{
+    font:400 12px 'proxima_nova_ltsemibold' !important;
+  }
+
+  .card-subtitle{
+    font:400 12px 'proxima_nova_ltsemibold' !important;
+  }
+  .card-title{
+    font:400 18px 'proxima_nova_ltsemibold' !important;
+  }
+  .dataNumberM{
+    font:400 18px 'proxima_nova_ltsemibold' !important;
+  }
+  .dataNumberTV{
+    font:400 18px 'proxima_nova_ltsemibold' !important;
+  }
+  .newsDataNumber{
+    font:400 12px 'proxima_nova_ltsemibold' !important;
+  }
+  .movieInfo{
+    font:400 20px 'proxima_nova_ltsemibold';
+  }
+  .tvShowInfo{
+    font:400 20px 'proxima_nova_ltsemibold';
+  }
+  .strike{
+    font:400 26px 'proxima_nova_ltsemibold';
+  }
+}
+@media only screen and (min-width:1440px){
+  /* styles for browsers larger than 1440px; */
+  .dataNumber{
+    font:400 16px 'proxima_nova_ltsemibold' !important;
+  }
+  .dataNumberM{
+    font:400 20px 'proxima_nova_ltsemibold' !important;
+  }
+  .dataNumberTV{
+    font:400 20px 'proxima_nova_ltsemibold' !important;
+  }
+  .newsDataNumber{
+    font:400 18px 'proxima_nova_ltsemibold' !important;
+  }
+  .movieInfo{
+    font:400 24px 'proxima_nova_ltsemibold';
+  }
+  .tvShowInfo{
+    font:400 24px 'proxima_nova_ltsemibold';
+  }
+  .strike{
+    font:400 28px 'proxima_nova_ltsemibold';
+  }
+  .homeText{
+    font-size: 26px!important;
+  }
+
+}
+@media only screen and (min-width:2000px){
+  /* for sumo sized (mac) screens */
+  .dataNumber{
+    font:400 18px 'proxima_nova_ltsemibold' !important;
+  }
+  .dataNumberM{
+    font:400 22px 'proxima_nova_ltsemibold' !important;
+  }
+  .dataNumberTV{
+    font:400 22px 'proxima_nova_ltsemibold' !important;
+  }
+  .newsDataNumber{
+    font:400 22px 'proxima_nova_ltsemibold' !important;
+  }
+
+  .movieInfo{
+    font:400 24px 'proxima_nova_ltsemibold';
+  }
+  .tvShowInfo{
+    font:400 24px 'proxima_nova_ltsemibold';
+  }
+  .strike{
+    font:400 32px 'proxima_nova_ltsemibold';
+  }
+  .homeText{
+    font-size: 32px!important;
+  }
+}
+@media only screen and (max-device-width:480px){
+  /* styles for mobile browsers smaller than 480px; (iPhone) */
+
+}
+@media only screen and (device-width:768px){
+  /* default iPad screens */
+
+}
+/* different techniques for iPad screening */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+
+  /* For portrait layouts only */
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+  /* For landscape layouts only */
+
+}
+
